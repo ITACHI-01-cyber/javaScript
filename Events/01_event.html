@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events</title>
+</head>
+<body style = "background-color: #414141; color:skyblue;">
+        <h2>Amazing image</h2>
+        <div>
+            <ul id = "image">
+                <li><img id = "first" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJz7PyQs8JTpkTPbXuNMR6f0ZFbqIJNBxCbg&s" 
+                    alt = "" >Click on the image to enlarge it</li>
+                <li><img id = "second" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJz7PyQs8JTpkTPbXuNMR6f0ZFbqIJNBxCbg&s" 
+                    alt="Amazing Image">Double click on the image to reduce it</li>
+            </ul>
+        </div>
+</body>
+<script>
+        document.getElementById('first').onclick = function(){
+          //  alert("ofice 1")
+        }
+        document.getElementById('second').addEventListener('click',function(){
+         //   alert('office 2')
+        },false)
+        // event object
+         document.getElementById('second').addEventListener('click',function(e){
+         // console.log(e)
+        },true)
+        // type,timestamp,defaultPrevented
+        // target, to Elment ,source element
+        // client position
+        // altkey,ctrlkey,shiftkey
+        document.getElementById('image').addEventListener('click',function(e){
+        //  console.log('click inside ul')
+        },true)
+        document.getElementById('second').addEventListener('click',function(e){
+        //  console.log("office 2")
+          e.stopPropagation();
+        },)
+        document.getElementById('second').addEventListener('click',function(e){
+            e.preventDefault();
+         // console.log("google clicked")
+          
+        },false)
+
+        document.querySelector('#image').addEventListener('click',function(e){
+            console.log(e.target.parentNode.tagName);
+
+            if(e.target.tagName === "IMG"){
+            let removeIt = e.target.parentNode
+                 removeIt.remove() // remove a list or image
+            }
+            //  removeIt.parentNode.removeChild(removeIt)
+        },false)
+</script>
+</html>
